@@ -38,7 +38,7 @@ export function Player() {
           </button>
         </div>
 
-        <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow">
+        <main className="relative flex overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900 shadow pr-80">
           <div className="flex-1">
             <div className="w-full bg-zinc-950 aspect-video">
               <ReactPlayer
@@ -49,7 +49,54 @@ export function Player() {
               />
             </div>
           </div>
-          <aside className="max-w-80 w-full border-l border-zinc-800 bg-zinc-900">
+          <aside className="max-w-80 absolute top-0 bottom-0 right-0 w-full border-l border-zinc-800 bg-zinc-900 overflow-y-scroll scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 divide-y-2 divide-zinc-900">
+            <div>
+              <button className="flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer">
+                <span className="flex size-10 rounded-full items-center justify-center bg-zinc-950 text-xs">
+                  1
+                </span>
+
+                <div className="flex flex-col gap-1 text-left">
+                  <strong className="text-sm">Desvendando o Redux</strong>
+                  <span className="text-xs text-zinc-400">12 aulas</span>
+                </div>
+
+                <ChevronDown className="size-5 ml-auto text-zinc-400" />
+              </button>
+            </div>
+
+            <div>
+              <button className="flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer">
+                <span className="flex size-10 rounded-full items-center justify-center bg-zinc-950 text-xs">
+                  1
+                </span>
+
+                <div className="flex flex-col gap-1 text-left">
+                  <strong className="text-sm">Desvendando o Redux</strong>
+                  <span className="text-xs text-zinc-400">12 aulas</span>
+                </div>
+
+                <ChevronDown className="size-5 ml-auto text-zinc-400" />
+              </button>
+
+              <nav className="relative flex flex-col gap-4 p-6">
+                {aulas.map((aula) => (
+                  <>
+                    <button
+                      id={aula.id}
+                      className="flex items-center gap-3 text-sm text-zinc-400 hover:text-zinc-300 cursor-pointer transition-colors"
+                    >
+                      <Video className="size-4 text-zinc-500" />
+                      <span className="truncate">{aula.title}</span>
+                      <span className="ml-auto font-mono text-xs text-zinc-500 trun">
+                        {aula.duration}
+                      </span>
+                    </button>
+                  </>
+                ))}
+              </nav>
+            </div>
+
             <div>
               <button className="flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer">
                 <span className="flex size-10 rounded-full items-center justify-center bg-zinc-950 text-xs">
