@@ -5,7 +5,7 @@ export function Header() {
   const { currentModule, currentLesson } = useAppSelector((state) => {
     const { currentLessonIndex, currentModuleIndex } = state.player;
 
-    const currentModule = state.player.modules[currentModuleIndex];
+    const currentModule = state.player.course.modules[currentModuleIndex];
     const currentLesson = currentModule.lessons[currentLessonIndex];
 
     return { currentModule, currentLesson };

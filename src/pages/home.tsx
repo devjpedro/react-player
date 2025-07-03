@@ -2,7 +2,7 @@ import { Player } from "../components/player";
 import { useAppSelector } from "../store";
 
 export function HomePage() {
-  const modules = useAppSelector((player) => player.player.modules);
+  const modules = useAppSelector((player) => player.player.course.modules);
 
   return (
     <div className="h-screen bg-zinc-950 text-zinc-50 flex justify-center items-center">

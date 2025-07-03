@@ -22,21 +22,18 @@ export function Module({ moduleIndex, title, amountOfLessons }: ModuleProps) {
   });
 
   const lessons = useAppSelector(
-    (state) => state.player.modules[moduleIndex].lessons
+    (state) => state.player.course.modules[moduleIndex].lessons
   );
 
   const handlePlayLesson = (lessonIndex: number) => {
-    dispatch({
-      type: play.type,
-      payload: {
-        moduleIndex,
-        lessonIndex,
-      },
-    });
+    dispatch(play({
+      lessonIndex,
+      moduleIndex
+    }));
   };
 
   return (
-    <Collapsible.Root className="group">
+    <Collapsible.Root className="group" defaultOpen={moduleIndex === 0}>
       <Collapsible.Trigger className="flex w-full items-center gap-3 bg-zinc-800 p-4 cursor-pointer">
         <span className="flex size-10 rounded-full items-center justify-center bg-zinc-950 text-xs">
           {moduleIndex + 1}
