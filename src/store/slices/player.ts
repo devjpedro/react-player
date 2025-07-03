@@ -36,10 +36,10 @@ const playerSlice = createSlice({
     play: (state, action) => {
       state.currentModuleIndex = action.payload.moduleIndex;
       state.currentLessonIndex = action.payload.lessonIndex;
-    }
+    },
   },
 });
 
 export const player = playerSlice.reducer;
 
-export const { play } = playerSlice.actions
+export const { play } = playerSlice.actions;
