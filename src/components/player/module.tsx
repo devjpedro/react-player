@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { Lesson } from "./lesson";
 import { useAppSelector } from "../../store";
 import { useDispatch } from "react-redux";
-import { play } from "../../store/slices/player";
+import { play, useCurrentLessonIndex } from "../../store/slices/player";
 
 interface ModuleProps {
   moduleIndex: number;
@@ -15,11 +15,7 @@ interface ModuleProps {
 export function Module({ moduleIndex, title, amountOfLessons }: ModuleProps) {
   const dispatch = useDispatch();
 
-  const { currentModuleIndex, currentLessonIndex } = useAppSelector((state) => {
-    const { currentModuleIndex, currentLessonIndex } = state.player;
-
-    return { currentLessonIndex, currentModuleIndex };
-  });
+  const { currentModuleIndex, currentLessonIndex } = useCurrentLessonIndex()
 
   const lessons = useAppSelector(
     (state) => state.player.course.modules[moduleIndex].lessons
