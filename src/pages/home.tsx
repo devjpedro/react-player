@@ -1,14 +1,22 @@
 import { useEffect } from "react";
 import { Player } from "../components/player";
-import { useAppSelector } from "../store";
-import { useCurrentLesson } from "../store/slices/player";
+import { useAppDispatch, useAppSelector } from "../store";
+import { loadCourse, useCurrentLesson } from "../store/slices/player";
 
 export function HomePage() {
-  const modules = useAppSelector((player) => player.player.course.modules);
+  const dispatch = useAppDispatch()
+
+  const modules = useAppSelector((player) => player.player.course?.modules);
 
   const { currentLesson } = useCurrentLesson()
 
   useEffect(() => {
+    dispatch(loadCourse())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (!currentLesson) return
+
     document.title = `Assistindo: ${currentLesson.title}`
   }, [currentLesson])
 
@@ -22,7 +30,7 @@ export function HomePage() {
             <Player.Video />
           </div>
           <aside className="max-w-80 absolute top-0 bottom-0 right-0 w-full border-l border-zinc-800 bg-zinc-900 overflow-y-auto scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 divide-y-2 divide-zinc-900">
-            {modules.map((module, index) => (
+            {modules && modules.map((module, index) => (
               <Player.Module
                 key={module.id}
                 moduleIndex={index}
