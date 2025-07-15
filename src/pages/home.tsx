@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useCurrentLesson, useStore } from "../zustand-store";
+import { useCurrentLesson, useStore } from "../store";
 import { Player } from "../components/player";
 
 export function HomePage() {

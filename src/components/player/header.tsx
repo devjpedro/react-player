@@ -1,5 +1,5 @@
 import { MessageCircle } from "lucide-react";
-import { useCurrentLesson, useStore } from "../../zustand-store";
+import { useCurrentLesson, useStore } from "../../store";
 
 export function Header() {
   const { currentModule, currentLesson } = useCurrentLesson()
