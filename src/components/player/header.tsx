@@ -1,17 +1,17 @@
 import { MessageCircle } from "lucide-react";
-import { useCurrentLesson } from "../../store/slices/player";
-import { useAppSelector } from "../../store";
+import { useCurrentLesson, useStore } from "../../zustand-store";
 
 export function Header() {
   const { currentModule, currentLesson } = useCurrentLesson()
-  const isCourseLoading = useAppSelector((state) => state.player.isLoading);
+
+  const isLoading = useStore(state => state.isLoading)
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-col gap-1">
-        <h1 className="text-2xl font-bold">{isCourseLoading ? "Buscando aula..." : currentLesson?.title}</h1>
+        <h1 className="text-2xl font-bold">{isLoading ? "Buscando aula..." : currentLesson?.title}</h1>
         <span className="text-sm text-zinc-400">
-          {isCourseLoading ? "Aguarde enquanto buscamos os dados da aula" : `Módulo "${currentModule?.title}"`}
+          {isLoading ? "Aguarde enquanto buscamos os dados da aula" : `Módulo "${currentModule?.title}"`}
         </span>
       </div>
 

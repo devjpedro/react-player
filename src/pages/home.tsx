@@ -1,18 +1,16 @@
 import { useEffect } from "react";
+import { useCurrentLesson, useStore } from "../zustand-store";
 import { Player } from "../components/player";
-import { useAppDispatch, useAppSelector } from "../store";
-import { loadCourse, useCurrentLesson } from "../store/slices/player";
 
 export function HomePage() {
-  const dispatch = useAppDispatch()
-
-  const modules = useAppSelector((player) => player.player.course?.modules);
+  const { course, load } = useStore()
 
   const { currentLesson } = useCurrentLesson()
 
   useEffect(() => {
-    dispatch(loadCourse())
-  }, [dispatch])
+    load()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (!currentLesson) return
@@ -30,7 +28,7 @@ export function HomePage() {
             <Player.Video />
           </div>
           <aside className="max-w-80 absolute top-0 bottom-0 right-0 w-full border-l border-zinc-800 bg-zinc-900 overflow-y-auto scrollbar-thin scrollbar-track-zinc-950 scrollbar-thumb-zinc-800 divide-y-2 divide-zinc-900">
-            {modules && modules.map((module, index) => (
+            {course?.modules && course?.modules.map((module, index) => (
               <Player.Module
                 key={module.id}
                 moduleIndex={index}
