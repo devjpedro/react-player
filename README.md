@@ -21,13 +21,13 @@
 Clone o projeto
 
 ```bash
-  git clone https://link-para-o-projeto
+  git clone https://github.com/devjpedro/react-player
 ```
 
 Entre no diretório do projeto
 
 ```bash
-  cd my-project
+  cd react-player
 ```
 
 Instale as dependências
